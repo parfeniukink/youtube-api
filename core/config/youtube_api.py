@@ -1,0 +1,1 @@
+YOUTUBE_DATA_API_KEY = 'AIzaSyAoV38MdhJjpiqkaKpThidqrzEQMle_stk'

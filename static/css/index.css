@@ -1,0 +1,29 @@
+ul {
+    list-style-type: none;
+}
+.back-btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.channel-form {
+    width: 100%;
+    text-align: center;
+    padding-top: 3rem;
+}
+.my-form {
+    width: 100%;
+    text-align: center;
+    margin: 1rem auto;
+}
+.title {
+    width: 100%;
+    text-align: center;
+}
+.stats {
+    width: 30%;
+}
+
+.chan_id {
+    width: 20%;
+}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="channel-form">
+                <form action="{% url 'app:index' %}" method="post">
+                    {% csrf_token %}
+                    {{ channel_form }}
+                    <button type="submit" class="btn btn-primary">Add channel</button>
+                </form>
+            </div>
+            <br>
+            <br>
+
+            <div class="tag-form">
+                <form action="{% url 'app:index' %}" method="post">
+                    {% csrf_token %}
+                    {{ tags_form }}
+                    <button type="submit" class="btn btn-primary">Filter by tag</button>
+                </form>
+            </div>
+            <br>
+            <br>
+
+
+            {% for channel in channels %}
+                <h3 class="title">Channel ID - {{ channel.chan_id }}</h3>
+                <table class="table table-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Video id</th>
+                        <th>Channel title</th>
+                        <th>Channel description</th>
+                        <th>Stats</th>
+                    </tr>
+                    {% for video in channel.videos.all %}
+                        <tr>
+                            <td>{{ video.video_id }}</td>
+                            <td>{{ video.title }}</td>
+                            <td>{{ video.description }}</td>
+                            <td class="stats">
+                                <ul>
+                                    {% for stat in video.stats.all %}
+                                        <li><span class="badge badge-secondary">{{ stat.key }}</span> - <span
+                                                class="badge badge-success">{{ stat.value }}</span></li>
+                                    {% endfor %}
+                                    {% for performance in video.performances.all %}
+                                        <li><span class="badge badge-secondary">{{ performance.key }}</span> :
+                                        <span class="badge badge-success">{{ performance.value }}</span>
+                                    {% endfor %}
+                                    </li>
+                                    <li><span class="badge badge-secondary">tags</span> :
+                                        {% for tag in video.tags.all %}
+                                            <span class="badge badge-success">{{ tag.tag }}</span>
+                                        {% endfor %}
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
